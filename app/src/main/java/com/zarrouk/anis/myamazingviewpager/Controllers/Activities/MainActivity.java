@@ -1,5 +1,6 @@
 package com.zarrouk.anis.myamazingviewpager.Controllers.Activities;
 
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,12 +15,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.configureViewPager();
+        this.configureViewPagerAndTabs();
     }
 
-    private void configureViewPager(){
-        ViewPager viewPager = (ViewPager)findViewById(R.id.activity_main_viewpager);
-        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), getResources().getIntArray(R.array.colorPagesViewPager)));
+    private void configureViewPagerAndTabs(){
+        ViewPager pager = (ViewPager)findViewById(R.id.activity_main_viewpager);
+        pager.setAdapter(new PageAdapter(getSupportFragmentManager()));
+        TabLayout tabs = (TabLayout)findViewById(R.id.activity_main_tabs);
+        tabs.setupWithViewPager(pager);
+        tabs.setTabMode(TabLayout.MODE_FIXED);
 
     }
 }
